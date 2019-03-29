@@ -14,9 +14,9 @@ public:
     Kontener(const Kontener &other);
 
     // standard 11 "noexcept"--> 
-    //virtual ~Kontener() noexcept;
+    virtual ~Kontener() /* noexcept */;
     Kontener& operator=(const Kontener &other);
-
+    
     int size()const{return size_;}
 
     // przeciazony operator tablicowy MUSI BYC PRZECIAZONY WKLASIE
@@ -33,11 +33,12 @@ private:
     int size_;
     T *tablica_;
 };
+
 template <typename T>
 Kontener<T>::Kontener(int size)
 {
     size_ = size;
-    tablica_ = new char[size];
+    tablica_ = new T[size];
 }
 template <typename T>
 Kontener<T>::Kontener(T znak, int size)
@@ -49,12 +50,12 @@ Kontener<T>::Kontener(T znak, int size)
         tablica_[i] = znak;
     }
 }
-/* // dekonstruktor
+// dekonstruktor
 template <typename T>
 Kontener<T>::~Kontener()
 {
     delete[] tablica_;
-} */
+}
 // konstruktor kopiujący ! wskaźnik powinien wskazywać na nową tablice
 template <typename T>
 Kontener<T>::Kontener(const Kontener<T> &other)
@@ -82,4 +83,13 @@ Kontener<T> &Kontener<T>::operator=(const Kontener &other)
     }
 
     return *this;
+}
+template <typename T>
+ostream& operator << (ostream & exit ,const Kontener<T> &print)
+{
+    for(int i = 0 ; i < print.size() ; i ++)
+    {
+        cout << print[i] << " " ;
+    }
+    return cout;
 }

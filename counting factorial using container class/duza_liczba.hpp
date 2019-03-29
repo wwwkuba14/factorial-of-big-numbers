@@ -1,4 +1,5 @@
 #include <string>
+#include "kontener.hpp"
 
 using namespace std; 
 
@@ -10,7 +11,7 @@ public :
 	Duza_liczba(int intLiczba);
 	~Duza_liczba()
 	{
-		delete [] tablica;
+		//delete [] tablica;
 	}
 	void print();
 
@@ -24,5 +25,5 @@ public :
 	friend Duza_liczba odejmowaniePisemne(Duza_liczba x, Duza_liczba y);
 
 private: 
-	int *tablica; 
+	Kontener<int> tablica;
 };

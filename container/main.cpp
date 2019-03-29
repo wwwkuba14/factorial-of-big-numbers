@@ -1,14 +1,14 @@
 #include "kontener.hpp"
+#include <iostream>
 
 using namespace std;
 
 int main()
 {
 
-    Kontener<int> test(1,10);
-    for(int i=0; i < test.size(); i++)
-        cout << test[i] << endl;
-
+    Kontener<string> test("test",10);
+    
+    cout << test << endl;
 
     return 0;
 }

@@ -10,23 +10,20 @@ int Duza_liczba::length = 200;
 // konstruktor bezargumentowy 
 Duza_liczba::Duza_liczba()
 {
-	tablica = new int[length];
-	for (int i = 0; i < length; i++)	tablica[i] = 0;
+	tablica = Kontener<int>(0, length);
 }
 // konstruktor z argumentem typu string
 Duza_liczba::Duza_liczba(string liczba)
 {
-	tablica = new int[length];	
-	for (int i = 0; i < length; i++)	tablica[i] = 0;
 	int stringLength = liczba.size();
+	tablica = Kontener<int>(0,length);
 
 	for (int i = 0; i <= stringLength; i++)
 		Duza_liczba::tablica[length - i] = liczba[stringLength - i] - 48;
 }
 Duza_liczba::Duza_liczba(int intLiczba)
 {
-	tablica = new int[length];
-	for (int i = 0; i < length; i++)	tablica[i] = 0;
+	tablica = Kontener<int>(0,length);
 	int mod = 10;
 	for(int i = length - 1 ; i >= 0;i --)
 	{
@@ -86,46 +83,21 @@ Duza_liczba & Duza_liczba::operator = (const Duza_liczba & a)
 	else{
 	for (int i = 0; i < length; i++)
 	{
-		delete [] tablica;
-		tablica = new int[length];
+		//delete [] tablica;
+		//tablica = new Kontener<int>(0, length);
 		tablica[i] = a.tablica[i];
 	}
 	return *this;
 	}
 }
-// operator porównania
-bool Duza_liczba::operator == (const Duza_liczba &a)
-{	
-	for (int i = 0; i < length; i++)
-	{
-		if (tablica[i] != a.tablica[i])
-		{
-			return false;
-		}
-	}
-	return true;
-}
-// operator nierówności
-bool Duza_liczba::operator != (const Duza_liczba &a)
-{
-	for (int i = 0; i < length; i++)
-	{
-		if (tablica[i] != a.tablica[i])
-		{
-			return true;
-		}
-	}
-	return false;
-}
-#pragma endregion
 
-#pragma region operatory dodawania i odejmowania
+
 // operator dodawania
 Duza_liczba Duza_liczba::operator + (const Duza_liczba &a)
 {
 	Duza_liczba temp("");
 	//delete [] tablica;
-	//tablica = new int [length];
+	temp.tablica = Kontener<int>(0, length);
 
 	for(int i = length -1 ; i >0; i--)
 	{
@@ -134,4 +106,3 @@ Duza_liczba Duza_liczba::operator + (const Duza_liczba &a)
 	}
 	return temp;
 }
-#pragma endregion
